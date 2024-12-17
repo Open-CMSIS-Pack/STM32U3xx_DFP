@@ -8,12 +8,12 @@
   <license>LICENSE</license>
   <licenseSets>
     <licenseSet id="all" default="true" gating="true">
-      <license name="LICENSE" title="Apache 2.0 open-source license" spdx="Apache-2.0"/>
+      <license title="Apache-2.0 License for CMSIS add-ons"                  name="LICENSE"   spdx="Apache-2.0"/>
     </licenseSet>
   </licenseSets>
 
   <releases>
-    <release version="0.0.0">
+    <release version="1.0.1-dev">
       Active development..
     </release>
   </releases>
@@ -393,10 +393,10 @@
           <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="CSP" n="52"/>
         </device>
-
       </subFamily>
 
     </family>
+
   </devices>
 
   <conditions>
@@ -427,7 +427,6 @@
         <file category="doc" name="https://github.com/Open-CMSIS-Pack/cmsis-toolbox/blob/main/docs/CubeMX.md"/>
       </files>
     </component>
-
   </components>
 
   <csolution>
@@ -442,5 +441,4 @@
     </template>
 
   </csolution>
-
 </package>
