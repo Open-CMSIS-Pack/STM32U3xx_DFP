@@ -13,8 +13,9 @@
   </licenseSets>
 
   <releases>
-    <release version="0.0.0">
-      Active development..
+    <release version="1.0.1-dev">
+      Active development ...
+      Updated documentation references
     </release>
   </releases>
 
@@ -424,7 +425,7 @@
         #define CMSIS_device_header "stm32u3xx.h"
       </RTE_Components_h>
       <files>
-        <file category="doc" name="https://github.com/Open-CMSIS-Pack/cmsis-toolbox/blob/main/docs/CubeMX.md"/>
+        <file category="doc" name="https://open-cmsis-pack.github.io/cmsis-toolbox/CubeMX"/>
       </files>
     </component>
 
