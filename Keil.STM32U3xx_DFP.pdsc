@@ -19,6 +19,9 @@
       Updated Templates:
       - Added DWARF-5 debug information
       - Added generated output files
+      Package Description (pdsc):
+      - Reorganized Flash and SRAM memory regions
+      - Shortened device family description
     </release>
   </releases>
 
@@ -35,243 +38,282 @@
       <processor Dcore="Cortex-M33" DcoreVersion="r0p0" Dfpu="SP_FPU" Dmpu="MPU" Ddsp="DSP" Dtz="TZ" Dendian="Little-endian" Dclock="160000000"/>
 
       <description>
-        The ARM Cortex-M33 based Microcontroller with FPU(Floating-Point Unit)is the most configurable of all Cortex-M processors.
-        It is a full featured microcontroller class processor based on the ARMv8-M mainline architecture with ARM TrustZone security.
+Ultra-low-power STM32U3 MCUs with Arm Cortex-M33 core, MPU, cache, DSP, FPU, 144 DMIPS at 96 MHz.
       </description>
 
       <book name="https://developer.arm.com/documentation/100235/latest/" title="Arm Cortex-M33 Devices"/>
+      <book name="https://www.st.com/resource/en/reference_manual/rm0487-stm32u3-series-armbased-32bit-mcus-stmicroelectronics.pdf" title="STM32U3 series Arm-based 32-bit MCUs Reference Manual"/>
+
 
       <!-- ************************  Subfamily 'STM32U375'  ************************************ -->
       <subFamily DsubFamily="STM32U375">
-        <debug svd="CMSIS/SVD/STM32U3.svd"/>
         <compile define="stm32u375xx"/>
-        <memory name="SRAM1"       access="rwx" start="0x20000000"  size="0x00030000" default="1" />
-        <memory name="SRAM2"       access="rwx" start="0x20030000"  size="0x00010000" default="1" />
+        <debug svd="CMSIS/SVD/STM32U3.svd"/>
+
+        <book name="https://www.st.com/resource/en/datasheet/stm32u375ce.pdf" title="STM32U375xx Datasheet"/>
+
+        <memory name="SRAM1_NS" access="rwx" start="0x20000000" size="0x00030000" default="1" init="0" />
+        <memory name="SRAM1_S"  access="rwx" start="0x30000000" size="0x00030000" alias="SRAM1_NS" />
+        <memory name="SRAM2_NS" access="rwx" start="0x20030000" size="0x00010000" default="1" init="0" />
+        <memory name="SRAM2_S"  access="rwx" start="0x30030000" size="0x00010000" alias="SRAM2_NS" />
+
         <!-- ################################### 1MB ################################## -->
         <!-- *************************  Device 'STM32U375VGTx'   ***************************** -->
         <device Dname="STM32U375VGTx">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="QFP" n="100"/>
         </device>
         <!-- *************************  Device 'STM32U375VGTxQ'   ***************************** -->
         <device Dname="STM32U375VGTxQ">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="QFP" n="100"/>
         </device>
         <!-- *************************  Device 'STM32U375VGIx'   ***************************** -->
         <device Dname="STM32U375VGIx">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="BGA" n="100"/>
         </device>
         <!-- *************************  Device 'STM32U375VGIxQ'   ***************************** -->
         <device Dname="STM32U375VGIxQ">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="BGA" n="100"/>
         </device>
         <!-- *************************  Device 'STM32U375RGTx'   ***************************** -->
         <device Dname="STM32U375RGTx">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="QFP" n="64"/>
         </device>
         <!-- *************************  Device 'STM32U375RGTxQ'   ***************************** -->
         <device Dname="STM32U375RGTxQ">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="QFP" n="64"/>
         </device>
         <!-- *************************  Device 'STM32U375RGIx'   ***************************** -->
         <device Dname="STM32U375RGIx">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="BGA" n="64"/>
         </device>
         <!-- *************************  Device 'STM32U375RGIxQ'   ***************************** -->
         <device Dname="STM32U375RGIxQ">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="BGA" n="64"/>
         </device>
         <!-- *************************  Device 'STM32U375CGTx'   ***************************** -->
         <device Dname="STM32U375CGTx">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="QFP" n="48"/>
         </device>
         <!-- *************************  Device 'STM32U375CGTxQ'   ***************************** -->
         <device Dname="STM32U375CGTxQ">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="QFP" n="48"/>
         </device>
         <!-- *************************  Device 'STM32U375CGUx'   ***************************** -->
         <device Dname="STM32U375CGUx">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="QFN" n="48"/>
         </device>
         <!-- *************************  Device 'STM32U375CGUxQ'   ***************************** -->
         <device Dname="STM32U375CGUxQ">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="QFN" n="48"/>
         </device>
         <!-- *************************  Device 'STM32U375KGUx'   ***************************** -->
         <device Dname="STM32U375KGUx">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="QFN" n="32"/>
         </device>
         <!-- *************************  Device 'STM32U375RGYxQ'   ***************************** -->
         <device Dname="STM32U375RGYxQ">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="CSP" n="68"/>
         </device>
         <!-- *************************  Device 'STM32U375RGYxG'   ***************************** -->
         <device Dname="STM32U375RGYxG">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="CSP" n="68"/>
         </device>
         <!-- *************************  Device 'STM32U375CGYxQ'   ***************************** -->
         <device Dname="STM32U375CGYxQ">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="CSP" n="52"/>
         </device>
 
         <!-- ################################### 512KB ################################## -->
         <!-- *************************  Device 'STM32U375VETx'   ***************************** -->
         <device Dname="STM32U375VETx">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00080000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"     start="0x08000000" size="0x00080000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"     start="0x0C000000" size="0x00080000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00080000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"  start="0x08000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"  start="0x0C000000" size="0x00080000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="QFP" n="100"/>
         </device>
         <!-- *************************  Device 'STM32U375VEIx'   ***************************** -->
         <device Dname="STM32U375VEIx">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00080000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"     start="0x08000000" size="0x00080000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"     start="0x0C000000" size="0x00080000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00080000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"  start="0x08000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"  start="0x0C000000" size="0x00080000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="BGA" n="100"/>
         </device>
         <!-- *************************  Device 'STM32U375VEIxQ'   ***************************** -->
         <device Dname="STM32U375VEIxQ">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00080000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"     start="0x08000000" size="0x00080000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"     start="0x0C000000" size="0x00080000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00080000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"  start="0x08000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"  start="0x0C000000" size="0x00080000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="BGA" n="100"/>
         </device>
         <!-- *************************  Device 'STM32U375RETx'   ***************************** -->
         <device Dname="STM32U375RETx">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00080000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"     start="0x08000000" size="0x00080000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"     start="0x0C000000" size="0x00080000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00080000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"  start="0x08000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"  start="0x0C000000" size="0x00080000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="QFP" n="64"/>
         </device>
         <!-- *************************  Device 'STM32U375RETxQ'   ***************************** -->
         <device Dname="STM32U375RETxQ">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00080000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"     start="0x08000000" size="0x00080000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"     start="0x0C000000" size="0x00080000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00080000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"  start="0x08000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"  start="0x0C000000" size="0x00080000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="QFP" n="64"/>
         </device>
         <!-- *************************  Device 'STM32U375REIx'   ***************************** -->
         <device Dname="STM32U375REIx">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00080000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"     start="0x08000000" size="0x00080000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"     start="0x0C000000" size="0x00080000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00080000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"  start="0x08000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"  start="0x0C000000" size="0x00080000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="BGA" n="64"/>
         </device>
         <!-- *************************  Device 'STM32U375REIxQ'   ***************************** -->
         <device Dname="STM32U375REIxQ">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00080000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"     start="0x08000000" size="0x00080000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"     start="0x0C000000" size="0x00080000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00080000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"  start="0x08000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"  start="0x0C000000" size="0x00080000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="BGA" n="64"/>
         </device>
         <!-- *************************  Device 'STM32U375CETx'   ***************************** -->
         <device Dname="STM32U375CETx">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00080000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"     start="0x08000000" size="0x00080000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"     start="0x0C000000" size="0x00080000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00080000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"  start="0x08000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"  start="0x0C000000" size="0x00080000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="QFP" n="48"/>
         </device>
         <!-- *************************  Device 'STM32U375CEUx'   ***************************** -->
         <device Dname="STM32U375CEUx">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00080000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"     start="0x08000000" size="0x00080000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"     start="0x0C000000" size="0x00080000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00080000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"  start="0x08000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"  start="0x0C000000" size="0x00080000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="QFN" n="48"/>
         </device>
         <!-- *************************  Device 'STM32U375KEUx'   ***************************** -->
         <device Dname="STM32U375KEUx">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00080000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"     start="0x08000000" size="0x00080000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"     start="0x0C000000" size="0x00080000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00080000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"  start="0x08000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"  start="0x0C000000" size="0x00080000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="QFN" n="32"/>
         </device>
         <!-- *************************  Device 'STM32U375VETxQ'   ***************************** -->
         <device Dname="STM32U375VETxQ">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00080000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"     start="0x08000000" size="0x00080000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"     start="0x0C000000" size="0x00080000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00080000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"  start="0x08000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"  start="0x0C000000" size="0x00080000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="QFP" n="100"/>
         </device>
         <!-- *************************  Device 'STM32U375REYxQ'   ***************************** -->
         <device Dname="STM32U375REYxQ">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00080000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"     start="0x08000000" size="0x00080000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"     start="0x0C000000" size="0x00080000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00080000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"  start="0x08000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"  start="0x0C000000" size="0x00080000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="CSP" n="68"/>
         </device>
         <!-- *************************  Device 'STM32U375REYxG'   ***************************** -->
         <device Dname="STM32U375REYxG">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00080000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"     start="0x08000000" size="0x00080000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"     start="0x0C000000" size="0x00080000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00080000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"  start="0x08000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"  start="0x0C000000" size="0x00080000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="CSP" n="68"/>
         </device>
         <!-- *************************  Device 'STM32U375CEYxQ'   ***************************** -->
         <device Dname="STM32U375CEYxQ">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00080000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"     start="0x08000000" size="0x00080000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"     start="0x0C000000" size="0x00080000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00080000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"  start="0x08000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"  start="0x0C000000" size="0x00080000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="CSP" n="52"/>
         </device>
         <!-- *************************  Device 'STM32U375CETxQ'   ***************************** -->
         <device Dname="STM32U375CETxQ">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00080000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"     start="0x08000000" size="0x00080000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"     start="0x0C000000" size="0x00080000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00080000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"  start="0x08000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"  start="0x0C000000" size="0x00080000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="QFP" n="48"/>
         </device>
         <!-- *************************  Device 'STM32U375CEUxQ'   ***************************** -->
         <device Dname="STM32U375CEUxQ">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00080000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"     start="0x08000000" size="0x00080000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"     start="0x0C000000" size="0x00080000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00080000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0800.FLM"  start="0x08000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_512K_0C00.FLM"  start="0x0C000000" size="0x00080000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="QFN" n="48"/>
         </device>
       </subFamily>
@@ -281,120 +323,141 @@
       <subFamily DsubFamily="STM32U385">
         <compile define="STM32u385xx"/>
         <debug svd="CMSIS/SVD/STM32U3.svd"/>
-        <memory name="SRAM1"       access="rwx" start="0x20000000"  size="0x00030000" default="1" />
-        <memory name="SRAM2"       access="rwx" start="0x20030000"  size="0x00010000" default="1" />
+
+        <book name="https://www.st.com/resource/en/datasheet/stm32u385cg.pdf" title="STM32U385xx Datasheet"/>
+
+        <memory name="SRAM1_NS" access="rwx" start="0x20000000" size="0x00030000" default="1" init="0" />
+        <memory name="SRAM1_S"  access="rwx" start="0x30000000" size="0x00030000" alias="SRAM1_NS" />
+        <memory name="SRAM2_NS" access="rwx" start="0x20030000" size="0x00010000" default="1" init="0" />
+        <memory name="SRAM2_S"  access="rwx" start="0x30030000" size="0x00010000" alias="SRAM2_NS" />
 
         <!-- ################################### 1MB ################################## -->
         <!-- *************************  Device 'STM32U385VGTx'   ***************************** -->
         <device Dname="STM32U385VGTx">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="QFP" n="100"/>
         </device>
         <!-- *************************  Device 'STM32U385VGTxQ'   ***************************** -->
         <device Dname="STM32U385VGTxQ">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="QFP" n="100"/>
         </device>
         <!-- *************************  Device 'STM32U385VGIx'   ***************************** -->
         <device Dname="STM32U385VGIx">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="BGA" n="100"/>
         </device>
         <!-- *************************  Device 'STM32U385VGIxQ'   ***************************** -->
         <device Dname="STM32U385VGIxQ">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="BGA" n="100"/>
         </device>
         <!-- *************************  Device 'STM32U385RGTx'   ***************************** -->
         <device Dname="STM32U385RGTx">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="QFP" n="64"/>
         </device>
         <!-- *************************  Device 'STM32U385RGTxQ'   ***************************** -->
         <device Dname="STM32U385RGTxQ">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="QFP" n="64"/>
         </device>
         <!-- *************************  Device 'STM32U385RGIx'   ***************************** -->
         <device Dname="STM32U385RGIx">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="BGA" n="64"/>
         </device>
         <!-- *************************  Device 'STM32U385RGIxQ'   ***************************** -->
         <device Dname="STM32U385RGIxQ">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="BGA" n="64"/>
         </device>
         <!-- *************************  Device 'STM32U385CGTx'   ***************************** -->
         <device Dname="STM32U385CGTx">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="QFP" n="48"/>
         </device>
         <!-- *************************  Device 'STM32U385CGTxQ'   ***************************** -->
         <device Dname="STM32U385CGTxQ">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="QFP" n="48"/>
         </device>
         <!-- *************************  Device 'STM32U385CGUx'   ***************************** -->
         <device Dname="STM32U385CGUx">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="QFN" n="48"/>
         </device>
         <!-- *************************  Device 'STM32U385CGUxQ'   ***************************** -->
         <device Dname="STM32U385CGUxQ">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="QFN" n="48"/>
         </device>
         <!-- *************************  Device 'STM32U385KGUx'   ***************************** -->
         <device Dname="STM32U385KGUx">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="QFN" n="32"/>
         </device>
         <!-- *************************  Device 'STM32U385RGYxQ'   ***************************** -->
         <device Dname="STM32U385RGYxQ">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="CSP" n="68"/>
         </device>
         <!-- *************************  Device 'STM32U385RGYxG'   ***************************** -->
         <device Dname="STM32U385RGYxG">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="CSP" n="68"/>
         </device>
         <!-- *************************  Device 'STM32U385CGYxQ'   ***************************** -->
         <device Dname="STM32U385CGYxQ">
-          <memory name="Flash" access="rx"                        start="0x08000000" size="0x00100000"     startup="1" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"     start="0x08000000" size="0x00100000"     RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"     start="0x0C000000" size="0x00100000"     RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
+          <memory name="Flash_NS" access="rx" start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory name="Flash_S"  access="rx" start="0x0C000000" size="0x00100000" alias="Flash_NS" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0800.FLM"    start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00008000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32U3xx_1M_0C00.FLM"    start="0x0C000000" size="0x00100000" RAMstart="0x30000000" RAMsize="0x00008000" default="1" />
           <feature type="CSP" n="52"/>
         </device>
 
