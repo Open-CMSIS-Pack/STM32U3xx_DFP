@@ -13,12 +13,8 @@
   </licenseSets>
 
   <releases>
-    <release version="1.1.1-dev">
+    <release version="1.2.1-dev">
       Active development ...
-      Updated SVD files
-      Updated Flash Programming implementation for STM32U3xx
-      Package Description (pdsc):
-      - Added support for STM32U3Bxx/STM32U3Cxx device list
     </release>
   </releases>
 
